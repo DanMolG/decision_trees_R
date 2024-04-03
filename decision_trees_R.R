@@ -3,10 +3,26 @@
 # Problem: classification
 ##################################################################
 
+
+# At the root, split the data by petal length. 
+# If petal length > 2.45 cm then follow the right branch down to the next node.
+# At the next node, the feature 
+# that is used to split the data is sepal length. Since the sepal length of the new
+# flower is greater than 5.0 cm, you would follow the right branch down to the leaf 
+# node. The leaf node that you reach is labeled “versicolor”, so the predicted class 
+# for the new flower is versicolor.
+
+
 # import libraries
 library(rpart)
 library(rpart.plot)
 library(dplyr)
+library(rattle)
+ 
+library(RColorBrewer)
+
+# plot mytree
+fancyRpartPlot(mytree, caption = NULL)
 
 # attach or read in dataset
 attach(iris)
@@ -39,6 +55,6 @@ tree <- rpart(Species ~ ., data = train, method = "class")
 par(mar=c(1,1,1,1))
 rpart.plot(tree, main = "Decision Tree for the Iris Dataset")
 
-
+fancyRpartPlot(tree, caption = NULL)
 
  
